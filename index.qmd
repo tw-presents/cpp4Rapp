@@ -90,7 +90,7 @@ $$ $$
   * **R** code is interpreted and dynamic:\
   *perfect for data analysis*
 
-## Objectives for this session
+## Objectives for the first meetings
 
 $$ $$
 
@@ -104,18 +104,18 @@ $$ $$
   * statistical distributions
 
 
-## Materials for this session
+## Materials for the first meetings
 
 $$ $$
 
 * Lecture slides
 * **C++** scripts:
-  * [`nicetry.cpp`](https://github.com/numbats/arp/blob/main/week12/nicetry.cpp)
-  * [`nicelr.cpp`](https://github.com/numbats/arp/blob/main/week12/nicelr.cpp)
-  * [`nicelist.cpp`](https://github.com/numbats/arp/blob/main/week12/nicelist.cpp)
-  * [`nicerig2.cpp`](https://github.com/numbats/arp/blob/main/week12/nicerig2.cpp)
+  * [`nicetry.cpp`](https://github.com/tw-presents/cpp4Rapp/blob/main/nicetry.cpp)
+  * [`nicelr.cpp`](https://github.com/tw-presents/cpp4Rapp/blob/main/nicelr.cpp)
+  * [`nicelist.cpp`](https://github.com/tw-presents/cpp4Rapp/blob/main/nicelist.cpp)
+  * [`nicerig2.cpp`](https://github.com/tw-presents/cpp4Rapp/blob/main/nicerig2.cpp)
 * **R** scripts:
-  * [`nicepackage.R`](https://github.com/numbats/arp/blob/main/week12/nicepackage.R)
+  * [`nicepackage.R`](https://github.com/tw-presents/cpp4Rapp/blob/main/nicepackage.R)
 
 ## learning resources
 
@@ -135,8 +135,7 @@ $$ $$
 
 
 
-
-# The first steps with Rcpp 
+## The first steps with Rcpp {background-color="#9933FF"}
 
 ## The first steps with Rcpp
 

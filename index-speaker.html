@@ -474,8 +474,8 @@ by Tomasz Woźniak
 </ul></li>
 </ul>
 </section>
-<section id="objectives-for-this-session" class="slide level2">
-<h2>Objectives for this session</h2>
+<section id="objectives-for-the-first-meetings" class="slide level2">
+<h2>Objectives for the first meetings</h2>
 <p><span class="math display">\[ \]</span></p>
 <ul>
 <li>to facilitate working with <strong>C++</strong> for <strong>R</strong> applications</li>
@@ -490,21 +490,21 @@ by Tomasz Woźniak
 </ul></li>
 </ul>
 </section>
-<section id="materials-for-this-session" class="slide level2">
-<h2>Materials for this session</h2>
+<section id="materials-for-the-first-meetings" class="slide level2">
+<h2>Materials for the first meetings</h2>
 <p><span class="math display">\[ \]</span></p>
 <ul>
 <li>Lecture slides</li>
 <li><strong>C++</strong> scripts:
 <ul>
-<li><a href="https://github.com/numbats/arp/blob/main/week12/nicetry.cpp"><code>nicetry.cpp</code></a></li>
-<li><a href="https://github.com/numbats/arp/blob/main/week12/nicelr.cpp"><code>nicelr.cpp</code></a></li>
-<li><a href="https://github.com/numbats/arp/blob/main/week12/nicelist.cpp"><code>nicelist.cpp</code></a></li>
-<li><a href="https://github.com/numbats/arp/blob/main/week12/nicerig2.cpp"><code>nicerig2.cpp</code></a></li>
+<li><a href="https://github.com/tw-presents/cpp4Rapp/blob/main/nicetry.cpp"><code>nicetry.cpp</code></a></li>
+<li><a href="https://github.com/tw-presents/cpp4Rapp/blob/main/nicelr.cpp"><code>nicelr.cpp</code></a></li>
+<li><a href="https://github.com/tw-presents/cpp4Rapp/blob/main/nicelist.cpp"><code>nicelist.cpp</code></a></li>
+<li><a href="https://github.com/tw-presents/cpp4Rapp/blob/main/nicerig2.cpp"><code>nicerig2.cpp</code></a></li>
 </ul></li>
 <li><strong>R</strong> scripts:
 <ul>
-<li><a href="https://github.com/numbats/arp/blob/main/week12/nicepackage.R"><code>nicepackage.R</code></a></li>
+<li><a href="https://github.com/tw-presents/cpp4Rapp/blob/main/nicepackage.R"><code>nicepackage.R</code></a></li>
 </ul></li>
 </ul>
 </section>
@@ -525,10 +525,8 @@ by Tomasz Woźniak
 <li>Eddelbuettel, D., <a href="https://doi.org/10.1007/978-1-4614-6868-4"><em>Seamless R and C++ Integration with Rcpp</em></a></li>
 </ul>
 </section>
-<section>
-<section id="the-first-steps-with-rcpp" class="title-slide slide level1 center">
-<h1>The first steps with Rcpp</h1>
-
+<section id="the-first-steps-with-rcpp" class="slide level2" data-background-color="#9933FF">
+<h2>The first steps with Rcpp</h2>
 </section>
 <section id="the-first-steps-with-rcpp-1" class="slide level2">
 <h2>The first steps with Rcpp</h2>
@@ -566,9 +564,9 @@ by Tomasz Woźniak
 <span id="cb1-9"><a href="#cb1-9"></a><span class="st">'</span>)</span>
 <span id="cb1-10"><a href="#cb1-10"></a><span class="fu">nicetry</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>           v x    y    z
-1 0.01018862 1 TRUE nice
-2 1.33578762 2 TRUE nice</code></pre>
+<pre><code>           v x     y    z
+1  0.7287897 1  TRUE nice
+2 -2.0493874 2 FALSE nice</code></pre>
 </div>
 </div>
 </section>
@@ -690,10 +688,10 @@ by Tomasz Woźniak
 <span id="cb9-2"><a href="#cb9-2"></a><span class="fu">nicelist</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$p
-[1]  1.056614 -1.329691 -1.473163
+[1] -0.2981413 -0.4129962  1.0584882
 
 $s
-[1] 1.116434 1.768078 2.170208</code></pre>
+[1] 0.08888821 0.17056589 1.12039716</code></pre>
 </div>
 </div>
 </section>
@@ -718,7 +716,7 @@ y_t = y_{t-1} + \varepsilon_t, \qquad \varepsilon_t \sim N(0,1), \qquad y_0 = 0
 </div>
 </div>
 </div>
-</section></section>
+</section>
 <section>
 <section id="some-stats-with-rcpparmadillo" class="title-slide slide level1 center">
 <h1>Some stats with RcppArmadillo</h1>
