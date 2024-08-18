@@ -565,8 +565,8 @@ by Tomasz Woźniak
 <span id="cb1-10"><a href="#cb1-10"></a><span class="fu">nicetry</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>           v x     y    z
-1  0.7287897 1  TRUE nice
-2 -2.0493874 2 FALSE nice</code></pre>
+1 -0.8560833 1 FALSE nice
+2  0.5044627 2  TRUE nice</code></pre>
 </div>
 </div>
 </section>
@@ -688,10 +688,10 @@ by Tomasz Woźniak
 <span id="cb9-2"><a href="#cb9-2"></a><span class="fu">nicelist</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$p
-[1] -0.2981413 -0.4129962  1.0584882
+[1] -0.3198467 -1.2856931  0.3423516
 
 $s
-[1] 0.08888821 0.17056589 1.12039716</code></pre>
+[1] 0.1023019 1.6530069 0.1172046</code></pre>
 </div>
 </div>
 </section>
@@ -773,12 +773,29 @@ y_t = y_{t-1} + \varepsilon_t, \qquad \varepsilon_t \sim N(0,1), \qquad y_0 = 0
 </div>
 <div class="callout-content">
 <p>Extend the <code>nicelr</code> function to return also the covariance of <span class="math inline">\(\hat{\beta}\)</span>: <span class="math display">\[
-\widehat{Cov}\left[\hat\beta\right] = \hat\sigma^2 \left(X'X\right)^{-1}, \qquad \hat\sigma^2 = \frac{1}{T} \left( Y - \hat\beta X \right)'\left( Y - \hat\beta X \right)
+\widehat{Cov}\left[\widehat\beta\right] = \widehat\sigma^2 \left(X'X\right)^{-1}, \qquad \widehat\sigma^2 = \frac{1}{T} \left( Y - \widehat\beta X \right)'\left( Y - \widehat\beta X \right)
 \]</span></p>
 <ul>
 <li>don’t adjust the arguments</li>
-<li>return <code>beta_hat</code> and <code>cov_beta_hat</code> in a list</li>
+<li>return <code>beta_hat</code>, <code>sigma2_hat</code> and <code>cov_beta_hat</code> in a list</li>
 </ul>
+<p>Get some help <a href="http://arma.sourceforge.net/docs.html">HERE</a>.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="some-stats-with-rcpparmadillo-random-walk-generator" class="slide level2">
+<h2>Some stats with RcppArmadillo: random walk generator</h2>
+<div class="callout callout-caution callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Your turn!</strong></p>
+</div>
+<div class="callout-content">
+<p>Write a function that generates a random walk with a given length <code>T</code> and a given standard deviation <code>sigma</code> of the innovations using <strong>RcppArmadillo</strong>.</p>
 <p>Get some help <a href="http://arma.sourceforge.net/docs.html">HERE</a>.</p>
 </div>
 </div>
@@ -794,9 +811,7 @@ y_t = y_{t-1} + \varepsilon_t, \qquad \varepsilon_t \sim N(0,1), \qquad y_0 = 0
 <li>Generate random draw <span class="math inline">\(x\)</span> from <span class="math inline">\(\chi^2(\nu)\)</span></li>
 <li>Return <span class="math inline">\(\frac{s}{x}\)</span></li>
 </ol>
-</section>
-<section id="some-stats-with-rcpparmadillo-ig2-distribution-1" class="slide level2">
-<h2>Some stats with RcppArmadillo: IG2 distribution</h2>
+<p><span class="math display">\[ \]</span></p>
 <p>Contents of a <code>nicerig2.cpp</code> file:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource rcpp number-lines code-with-copy"><code class="sourceCode"><span id="cb12-1"><a href="#cb12-1"></a>#include &lt;RcppArmadillo.h&gt;</span>
@@ -824,6 +839,13 @@ y_t = y_{t-1} + \varepsilon_t, \qquad \varepsilon_t \sim N(0,1), \qquad y_0 = 0
 <li>a positive scale <span class="math inline">\(s\)</span></li>
 <li>a positive shape <span class="math inline">\(\nu\)</span></li>
 </ul>
+<p><span class="math display">\[ \]</span></p>
+<p><strong>Normal-inverted gamma 2 distribution.</strong> <span class="math display">\[\begin{align*}
+\left(\mathbf{x}, \sigma^2\right) &amp;\sim NIG2\left(\boldsymbol\mu, \boldsymbol\Sigma, s, \nu\right)\\[2ex]
+p\left(\mathbf{x}, \sigma^2\right) &amp;= p\left(\mathbf{x} \mid \sigma^2\right)p\left(\sigma^2\right)\\[2ex]
+\sigma^2 &amp;\sim IG2\left(s, \nu\right)\\
+\mathbf{x} \mid \sigma^2 &amp;\sim N\left(\boldsymbol\mu, \sigma^2\boldsymbol\Sigma\right)
+\end{align*}\]</span></p>
 </section>
 <section id="some-stats-with-rcpparmadillo-nig2-distribution-1" class="slide level2">
 <h2>Some stats with RcppArmadillo: NIG2 distribution</h2>
@@ -833,15 +855,38 @@ p\left(\mathbf{x}, \sigma^2\right) &amp;= p\left(\mathbf{x} \mid \sigma^2\right)
 \sigma^2 &amp;\sim IG2\left(s, \nu\right)\\
 \mathbf{x} \mid \sigma^2 &amp;\sim N\left(\boldsymbol\mu, \sigma^2\boldsymbol\Sigma\right)
 \end{align*}\]</span></p>
-</section>
-<section id="some-stats-with-rcpparmadillo-nig2-distribution-2" class="slide level2">
-<h2>Some stats with RcppArmadillo: NIG2 distribution</h2>
+<p><span class="math display">\[ \]</span></p>
 <p>To generate <span class="math inline">\(n\)</span> random draws from the normal-inverted gamma 2 distribution:</p>
 <ol type="1">
 <li>Generate <span class="math inline">\(n\)</span> independent random draws of <span class="math inline">\(\sigma^{2(j)}\)</span> from <span class="math inline">\(IG2(s, \nu)\)</span> for <span class="math inline">\(j=1,\dots,n\)</span></li>
 <li>For each <span class="math inline">\(j\)</span>, generate the corresponding random draw of <span class="math inline">\(\mathbf{x}^{(j)}\)</span> from <span class="math inline">\(N\left(\boldsymbol\mu, \sigma^{2(j)}\boldsymbol\Sigma\right)\)</span></li>
 <li>Return the collection of pairs <span class="math inline">\(\left\{\mathbf{x}^{(j)}, \sigma^{2(j)}\right\}_{j=1}^n\)</span></li>
 </ol>
+</section>
+<section id="some-stats-with-rcpparmadillo-nig2-distribution-2" class="slide level2">
+<h2>Some stats with RcppArmadillo: NIG2 distribution</h2>
+<div class="callout callout-caution callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Your turn!</strong></p>
+</div>
+<div class="callout-content">
+<p>Complement the <code>niceig2</code> function with another one that provides <span class="math inline">\(n\)</span> random draws from the normal-inverted gamma 2 distribution.</p>
+<ol type="1">
+<li>adjust the arguments</li>
+<li>return a list containing</li>
+</ol>
+<ul>
+<li>an <span class="math inline">\(n\)</span>-vector of <span class="math inline">\(\sigma^2\)</span> draws</li>
+<li>an <span class="math inline">\(n\times N\)</span> matrix of <span class="math inline">\(\mathbf{x}\)</span> draws</li>
+</ul>
+<p>Get some help <a href="http://arma.sourceforge.net/docs.html">HERE</a>.</p>
+</div>
+</div>
+</div>
 </section>
 <section id="some-stats-with-rcpparmadillo-nig2-distribution-3" class="slide level2">
 <h2>Some stats with RcppArmadillo: NIG2 distribution</h2>
@@ -854,15 +899,11 @@ p\left(\mathbf{x}, \sigma^2\right) &amp;= p\left(\mathbf{x} \mid \sigma^2\right)
 <p><strong>Your turn!</strong></p>
 </div>
 <div class="callout-content">
-<p>Complement the <code>niceig2</code> function with another one that provides <span class="math inline">\(n\)</span> random draws from the normal-inverted gamma 2 distribution.</p>
-<ul>
-<li>adjust the arguments</li>
-<li>return a list containing
-<ul>
-<li>an <span class="math inline">\(n\)</span>-vector of <span class="math inline">\(\sigma^2\)</span> draws</li>
-<li>an <span class="math inline">\(n\times N\)</span> matrix of <span class="math inline">\(\mathbf{x}\)</span> draws</li>
-</ul></li>
-</ul>
+<ol start="3" type="1">
+<li>Extend the <code>nicerig2.cpp</code> file with the <strong>R</strong> function that generates the random draws from the normal-incerted gamma 2 distribution.</li>
+<li>Make certain the two functions generate exactly the same exactly the same draws.</li>
+<li>Compare the two functions in terms of the computational speed using <code>bench::mark()</code>.</li>
+</ol>
 <p>Get some help <a href="http://arma.sourceforge.net/docs.html">HERE</a>.</p>
 </div>
 </div>

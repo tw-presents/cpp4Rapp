@@ -330,14 +330,28 @@ nicelr(y, x)
 ::: {.callout-caution title="Your turn!"}
 Extend the `nicelr` function to return also the covariance of $\hat{\beta}$:
 $$
-\widehat{Cov}\left[\hat\beta\right] = \hat\sigma^2 \left(X'X\right)^{-1}, \qquad \hat\sigma^2 = \frac{1}{T} \left( Y - \hat\beta X \right)'\left( Y - \hat\beta X \right)
+\widehat{Cov}\left[\widehat\beta\right] = \widehat\sigma^2 \left(X'X\right)^{-1}, \qquad \widehat\sigma^2 = \frac{1}{T} \left( Y - \widehat\beta X \right)'\left( Y - \widehat\beta X \right)
 $$
 
 * don't adjust the arguments
-* return `beta_hat` and `cov_beta_hat` in a list
+* return `beta_hat`, `sigma2_hat` and `cov_beta_hat` in a list
 
 Get some help [HERE](http://arma.sourceforge.net/docs.html).
 :::
+
+
+
+
+
+## Some stats with RcppArmadillo: random walk generator
+
+::: {.callout-caution title="Your turn!"}
+Write a function that generates a random walk with a given length `T` and a given standard deviation `sigma` of the innovations using **RcppArmadillo**.
+
+Get some help [HERE](http://arma.sourceforge.net/docs.html).
+:::
+
+
 
 
 
@@ -353,8 +367,7 @@ $$
 1. Generate random draw $x$ from $\chi^2(\nu)$
 2. Return $\frac{s}{x}$
 
-
-## Some stats with RcppArmadillo: IG2 distribution
+$$ $$
 
 Contents of a `nicerig2.cpp` file:
 
@@ -386,7 +399,7 @@ Random variables, an $N$-vector $\mathbf{x}$ and a positive scalar, $\sigma^2$, 
 * a positive scale $s$ 
 * a positive shape $\nu$ 
 
-## Some stats with RcppArmadillo: NIG2 distribution
+$$ $$
 
 **Normal-inverted gamma 2 distribution.**
 \begin{align*}
@@ -396,8 +409,18 @@ p\left(\mathbf{x}, \sigma^2\right) &= p\left(\mathbf{x} \mid \sigma^2\right)p\le
 \mathbf{x} \mid \sigma^2 &\sim N\left(\boldsymbol\mu, \sigma^2\boldsymbol\Sigma\right)
 \end{align*}
 
-
 ## Some stats with RcppArmadillo: NIG2 distribution
+
+
+**Normal-inverted gamma 2 distribution.**
+\begin{align*}
+\left(\mathbf{x}, \sigma^2\right) &\sim NIG2\left(\boldsymbol\mu, \boldsymbol\Sigma, s, \nu\right)\\[2ex]
+p\left(\mathbf{x}, \sigma^2\right) &= p\left(\mathbf{x} \mid \sigma^2\right)p\left(\sigma^2\right)\\[2ex]
+\sigma^2 &\sim IG2\left(s, \nu\right)\\
+\mathbf{x} \mid \sigma^2 &\sim N\left(\boldsymbol\mu, \sigma^2\boldsymbol\Sigma\right)
+\end{align*}
+
+$$ $$
 
 To generate $n$ random draws from the normal-inverted gamma 2 distribution:
 
@@ -405,20 +428,31 @@ To generate $n$ random draws from the normal-inverted gamma 2 distribution:
 2. For each $j$, generate the corresponding random draw of $\mathbf{x}^{(j)}$ from $N\left(\boldsymbol\mu, \sigma^{2(j)}\boldsymbol\Sigma\right)$
 3. Return the collection of pairs $\left\{\mathbf{x}^{(j)}, \sigma^{2(j)}\right\}_{j=1}^n$
 
-
 ## Some stats with RcppArmadillo: NIG2 distribution
-
 
 ::: {.callout-caution title="Your turn!"}
 Complement the `niceig2` function with another one that provides $n$ random draws from the normal-inverted gamma 2 distribution.
 
-* adjust the arguments
-* return a list containing
+1. adjust the arguments
+2. return a list containing
   * an $n$-vector of $\sigma^2$ draws
   * an $n\times N$ matrix of $\mathbf{x}$ draws
 
 Get some help [HERE](http://arma.sourceforge.net/docs.html).
 :::
+
+## Some stats with RcppArmadillo: NIG2 distribution
+
+::: {.callout-caution title="Your turn!"}
+
+3. Extend the `nicerig2.cpp` file with the **R** function that generates the random draws from the normal-incerted gamma 2 distribution.
+4. Make certain the two functions generate exactly the same exactly the same draws.
+5. Compare the two functions in terms of the computational speed using `bench::mark()`.
+
+Get some help [HERE](http://arma.sourceforge.net/docs.html).
+:::
+
+
 
 ## Some stats with RcppArmadillo: Simulation smoother
 
